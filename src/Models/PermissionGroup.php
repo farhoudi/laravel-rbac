@@ -5,7 +5,7 @@ namespace Farhoudi\Rbac\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Permission
+ * Class PermissionGroup
  * @package Farhoudi\Rbac\Models
  */
 class PermissionGroup extends Model {
