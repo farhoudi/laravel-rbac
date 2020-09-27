@@ -1,0 +1,28 @@
+{
+    "name": "farhoudi/laravel-rbac",
+    "description": "Role based access control for Laravel 5+",
+    "keywords": [
+        "laravel",
+        "rbac",
+        "role",
+        "permission",
+        "acl"
+    ],
+    "type": "library",
+    "authors": [
+        {
+            "name": "Ali Farhoudi",
+            "email": "af.farhoudi@gmail.com"
+        }
+    ],
+    "license": "MIT",
+    "require": {
+        "php": ">=5.5.9",
+        "illuminate/support": "5.2.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Farhoudi\\Rbac\\": "src/"
+        }
+    }
+}
