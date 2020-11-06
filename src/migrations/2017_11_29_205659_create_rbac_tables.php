@@ -59,9 +59,10 @@ class CreateRbacTables extends Migration {
      * @return void
      */
     public function down() {
-        Schema::drop('rbac_role_user');
-        Schema::drop('rbac_permission_role');
-        Schema::drop('rbac_permissions');
-        Schema::drop('rbac_roles');
+        Schema::dropIfExists('rbac_role_user');
+        Schema::dropIfExists('rbac_permission_role');
+        Schema::dropIfExists('rbac_permissions');
+        Schema::dropIfExists('rbac_permission_groups');
+        Schema::dropIfExists('rbac_roles');
     }
 }

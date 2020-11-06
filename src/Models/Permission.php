@@ -21,6 +21,7 @@ class Permission extends Model {
         'name',
         'alias',
         'description',
+        'group_id',
     ];
 
     /**
@@ -32,6 +33,7 @@ class Permission extends Model {
         'name' => 'string',
         'alias' => 'string',
         'description' => 'string',
+        'group_id' => 'integer',
     ];
 
     /**
@@ -43,6 +45,7 @@ class Permission extends Model {
         'name' => 'required|string',
         'alias' => 'nullable|string|unique:rbac_permissions,alias',
         'description' => 'nullable|string',
+        'group_id' => 'nullable|integer|exists:rbac_permission_groups,id',
     ];
 
     protected $hidden = [
@@ -53,6 +56,10 @@ class Permission extends Model {
 
     public function roles() {
         return $this->belongsToMany(Role::class, 'rbac_permission_role', 'permission_id', 'role_id');
+    }
+
+    public function group() {
+        return $this->belongsTo(PermissionGroup::class, 'group_id', 'role_id');
     }
 
 }
