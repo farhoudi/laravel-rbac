@@ -8,7 +8,8 @@ use Farhoudi\Rbac\Models\Role;
 /**
  * Trait Rbac
  */
-trait Rbac {
+trait Rbac
+{
 
     private $rbacIsLoaded = false;
 
@@ -20,7 +21,8 @@ trait Rbac {
      * @param string|array $role
      * @return bool
      */
-    public function hasRole($role) {
+    public function hasRole($role)
+    {
         if (!$this->rbacIsLoaded) {
             $this->loadPermissions();
             $this->rbacIsLoaded = true;
@@ -48,7 +50,8 @@ trait Rbac {
      * @param string|array $permission
      * @return bool
      */
-    public function hasPermission($permission) {
+    public function hasPermission($permission)
+    {
         if (!$this->rbacIsLoaded) {
             $this->loadPermissions();
             $this->rbacIsLoaded = true;
@@ -77,7 +80,8 @@ trait Rbac {
      *
      * @param string|Role $role
      */
-    public function assignRole($role) {
+    public function assignRole($role)
+    {
         if (is_array($role)) {
             foreach ($role as $item) {
                 $this->assignRole($item);
@@ -97,12 +101,11 @@ trait Rbac {
             }
         }
 
-        if ($this->rbacIsLoaded) {
-            $this->loadPermissions();
-        }
+        $this->loadPermissions();
     }
 
-    public function loadPermissions() {
+    public function loadPermissions()
+    {
         $this->roles = $this->roles()->with(['permissions'])->get();
         $this->permissions = new Collection();
         foreach ($this->roles as $key => $role) {
@@ -116,7 +119,8 @@ trait Rbac {
         return $this->permissions;
     }
 
-    public function roles() {
+    public function roles()
+    {
         return $this->belongsToMany(Role::class, 'rbac_role_user', 'user_id', 'role_id');
     }
 
