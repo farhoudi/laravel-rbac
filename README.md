@@ -6,7 +6,7 @@ Laravel Role Based Access Control for Laravel 5+.
 Require via composer:
 
 ```
-composer require farhoudi/laravel-rbac
+composer require farhoudi/laravel-rbac:^1
 ```
 
 Register service provider to the `providers` array in `config/app.php`

@@ -32,8 +32,10 @@ class CreateRbacTables extends Migration {
             $table->string('name');
             $table->string('alias')->unique()->nullable();
             $table->text('description')->nullable();
-            $table->bigInteger('group_id')->unsigned();
+            $table->bigInteger('group_id')->unsigned()->nullable();
             $table->timestamps();
+
+            $table->foreign('group_id')->references('id')->on('rbac_permission_groups');
         });
 
         Schema::create('rbac_permission_role', function (Blueprint $table) {
@@ -42,6 +44,8 @@ class CreateRbacTables extends Migration {
 
             $table->foreign('permission_id')->references('id')->on('rbac_permissions');
             $table->foreign('role_id')->references('id')->on('rbac_roles');
+
+            $table->primary(['permission_id', 'role_id']);
         });
 
         Schema::create('rbac_role_user', function (Blueprint $table) {
@@ -54,6 +58,8 @@ class CreateRbacTables extends Migration {
             } catch (Exception $ex) {
                 $table->index('user_id');
             }
+
+            $table->primary(['role_id', 'user_id']);
         });
     }
 
